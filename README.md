@@ -1,16 +1,128 @@
-# React + Vite
+# 🩸 LifeLink Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+LifeLink is a modern blood donation and healthcare platform designed to connect blood donors, recipients, hospitals, and blood banks through a seamless and user-friendly interface.
 
-Currently, two official plugins are available:
+This repository contains the frontend application built using React and modern web technologies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Responsive and modern UI
+* User Registration & Login
+* Donor Dashboard
+* Blood Request Management
+* Search for Blood Donors
+* Real-time Status Updates
+* Mobile Friendly Design
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React.js
+* Vite
+* Tailwind CSS
+* React Router
+* Lucide React Icons
+
+## 📂 Project Structure
+
+```bash
+src/
+│
+├── assets/          # Images, icons and static files
+├── components/      # Reusable UI components
+├── pages/           # Application pages
+├── App.jsx
+└── main.jsx
+
+```
+
+---
+
+## ⚙️ Installation
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/Project-Lifelink/LifeLink-Frontend.git
+```
+
+### Navigate to Project Directory
+
+```bash
+cd LifeLink-Frontend
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Start Development Server
+
+```bash
+npm run dev
+```
+
+Application will be available at:
+
+```bash
+http://localhost:5173
+```
+
+---
+
+## 🔨 Build for Production
+
+```bash
+npm run build
+```
+---
+
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+
+```bash
+git checkout -b feature/your-feature-name
+```
+
+3. Commit your changes
+
+```bash
+git commit -m "Add your feature"
+```
+
+4. Push to your branch
+
+```bash
+git push origin feature/your-feature-name
+```
+
+5. Open a Pull Request
+
+---
+
+
+## 📄 License
+
+This project is developed for educational and community healthcare purposes.
+
+---
+
+## 👥 Team
+
+Developed by the LifeLink Team to make blood donation more accessible, faster, and reliable.
+
+---
+
+### ❤️ Save Lives Through Technology
+
+Every donation can save multiple lives. LifeLink aims to bridge the gap between donors and recipients with the power of technology.

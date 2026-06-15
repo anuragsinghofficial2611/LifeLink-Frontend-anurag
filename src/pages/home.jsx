@@ -13,6 +13,7 @@ import Features from './features.jsx'
 import Donateblood from './donateblood.jsx'
 import Requestblood from './requestblood.jsx'
 import Navbar from '../components/navbar.jsx'
+import BloodRequests from '../components/requests.jsx'
 // import Footer from '../components/footer.jsx'
 
 const home = () => {
@@ -95,7 +96,9 @@ const home = () => {
             <Howitworks />
             {/* <Donateblood /> */}
             <Requestblood />
+            <BloodRequests />
             <a href="/profile" className = "border-1 px-5 py-2">ProfileSection</a>
+
             
         </>
     )

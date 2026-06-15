@@ -131,9 +131,9 @@ export default function DashboardContent() {
               </p>
             </div>
 
-            <button className="bg-white hover:cursor-pointer active:scale-105 text-red-600 px-6 py-3 rounded-xl font-semibold mt-8">
+            <a href = "/requests" className="bg-white hover:cursor-pointer text-center active:scale-105 text-red-600 px-6 py-3 rounded-xl font-semibold mt-8">
               Donate Now
-            </button>
+            </a>
           </div>
         </div>
 

@@ -10,6 +10,7 @@ import Howitworks from './pages/howitworks.jsx'
 import Features from './pages/features.jsx'
 import Footer from './components/footer.jsx'
 import Profile from './components/profile/base.jsx'
+import Requests from './components/requests.jsx'
 
 const App = () => {
   return (
@@ -26,8 +27,10 @@ const App = () => {
         <Route path = '#howitworks' element = {<Features />} />
         <Route path = '/contact' element = {<Footer />} />
         <Route path = '/profile' element = {<Profile />} />
+        <Route path = '/requests' element = {<Requests />} />
       </Routes>
       <Footer />
+
     </>
   )
 }

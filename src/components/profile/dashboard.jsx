@@ -32,7 +32,7 @@ export default function DashboardContent() {
         </div>
 
         <div className="flex items-center gap-6">
-          <HashLink smooth to = "/#notification" className="relative hover:cursor-pointer">
+          <HashLink smooth to = "#notifications" className="relative hover:cursor-pointer">
             <Bell />
             <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs h-5 w-5 rounded-full flex items-center justify-center">
               

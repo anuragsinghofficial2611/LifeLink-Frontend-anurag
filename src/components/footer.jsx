@@ -32,7 +32,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <HashLink smooth to = "#donateblood" className="bg-white text-red-600 px-8 py-4 hover:cursor-pointer rounded-xl font-semibold hover:scale-105 transition">
+          <HashLink smooth to = "/requests" className="bg-white text-red-600 px-8 py-4 hover:cursor-pointer rounded-xl font-semibold hover:scale-105 transition">
             Become a Donor
           </HashLink>
         </div>

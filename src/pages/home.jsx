@@ -13,13 +13,14 @@ import Features from './features.jsx'
 import Donateblood from './donateblood.jsx'
 import Requestblood from './requestblood.jsx'
 import Navbar from '../components/navbar.jsx'
+import Footer from '../components/footer.jsx'
 import BloodRequests from '../components/requests.jsx'
 // import Footer from '../components/footer.jsx'
 
 const home = () => {
     return (
         <>
-        <Navbar />
+            <Navbar />
             <div className="h-screen">
                 <section>
                     <div className="flex m-5 flex-col md:flex-row">
@@ -97,9 +98,10 @@ const home = () => {
             {/* <Donateblood /> */}
             <Requestblood />
             <BloodRequests />
-            <a href="/profile" className = "border-1 px-5 py-2">ProfileSection</a>
 
-            
+            <a href="/profile" className="border-1 px-5 py-2">ProfileSection</a>
+            <Footer />
+
         </>
     )
 }

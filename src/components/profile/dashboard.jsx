@@ -18,18 +18,8 @@ export default function DashboardContent() {
   return (
     <div id="dashboard" className="flex-1 bg-gray-50 min-h-screen ">
       {/* Top Navbar */}
-      <div className="bg-white border-b px-8 py-5 flex items-center justify-between">
-        <div className="flex items-center gap-5">
-          {/* <Menu size={24} /> */}
-
-          <div className="w-[450px]">
-            <input
-              type="text"
-              placeholder="Search for donors, requests, or blood groups..."
-              className="w-full border rounded-xl px-5 py-3 outline-none"
-            />
-          </div>
-        </div>
+      <div className="bg-white border-b px-8 max-w-full py-5 flex items-center justify-between">
+        
 
         <div className="flex items-center gap-6">
           <HashLink smooth to = "#notifications" className="relative hover:cursor-pointer">
@@ -147,8 +137,8 @@ export default function DashboardContent() {
 
           <div className="bg-white p-6 rounded-2xl">
             <Users className="text-blue-600" />
-            <h2 className="text-4xl font-bold mt-3">12</h2>
-            <p>Lives Impacted</p>
+            <h2 className="text-4xl font-bold mt-3">0</h2>
+            <p>Total Requests</p>
           </div>
 
           <div className="bg-white p-6 rounded-2xl">
@@ -196,12 +186,12 @@ export default function DashboardContent() {
           </div>
 
           {/* Quick Actions */}
-          <div className="bg-white rounded-3xl p-6">
+          {/* <div className="bg-white rounded-3xl p-6">
             <h2 className="text-2xl font-bold mb-6">
               Quick Actions
             </h2>
 
-            <div className="grid grid-cols-2 gap-4">
+             <div className="grid grid-cols-2 gap-4">
               <button className="bg-gray-100 rounded-xl p-4 hover:cursor-pointer hover:bg-gray-200">
                 Find Donors
               </button>
@@ -217,8 +207,8 @@ export default function DashboardContent() {
               <button className="bg-gray-100 rounded-xl p-4 hover:cursor-pointer hover:bg-gray-200">
                 Invite Friends
               </button>
-            </div>
-          </div>
+            </div> 
+          </div> */}
         </div>
 
         {/* Bottom CTA */}

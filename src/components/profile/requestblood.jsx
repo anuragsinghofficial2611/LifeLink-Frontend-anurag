@@ -17,7 +17,18 @@ import { button } from 'framer-motion/client';
 export default function requestblood() {
     const [urgency, setUrgency] = useState('high');
     const [critical, setCritical] = useState(false);
-
+    const [name,setName] = useState("");
+    const[guardian,setGuardian] = useState("");
+    const[email,setEmail] = useState("");
+    const[phone,setPhone] = useState("");
+    const[password,setPassword] = useState("");
+    const[quantity,setQuantity] = useState("");
+    console.log(name);
+    console.log(guardian);
+    console.log(email);
+    console.log(phone);
+    console.log(password);
+    console.log(quantity);
 
     const urgencyLevels = [
         { id: 'critical', label: 'Critical', color: 'border-red-500 bg-red-50 text-red-700 ring-red-500/20' },
@@ -118,6 +129,8 @@ export default function requestblood() {
                                         <input
                                             type="text"
                                             placeholder="Enter patient's name"
+                                            onChange = {(e) => {setName(e.target.value)}}
+                                            
                                             className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
                                         />
                                     </div>
@@ -135,6 +148,7 @@ export default function requestblood() {
                                             type="text"
                                             placeholder="Enter guardian's name"
                                             className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
+                                            onChange = {(e) => {setGuardian(e.target.value)}}
                                         />
                                     </div>
                                 </div>
@@ -151,6 +165,7 @@ export default function requestblood() {
                                         type="email"
                                         placeholder="Enter contact email address"
                                         className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
+                                        onChange = {(e) => {setEmail(e.target.value)}}
                                     />
                                 </div>
                             </div>
@@ -164,6 +179,7 @@ export default function requestblood() {
                                         type="tel"
                                         placeholder="Enter active phone number"
                                         className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
+                                        onChange = {(e) => {setPhone(e.target.value)}}
                                     />
                                 </div>
                             </div>
@@ -203,6 +219,7 @@ export default function requestblood() {
                                         min="1"
                                         placeholder="e.g. 2"
                                         className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
+                                        onChange = {(e) => {setQuantity(e.target.value)}}
                                     />
                                 </div>
                             </div>

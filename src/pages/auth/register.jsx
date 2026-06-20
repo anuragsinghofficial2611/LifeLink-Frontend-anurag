@@ -4,6 +4,7 @@ import {
   Mail,
   Phone,
   Calendar,
+  FileText,
   Lock,
   Eye,
   EyeOff,
@@ -11,6 +12,7 @@ import {
   Users,
   Bell,
   Heart,
+  Droplet,
   ArrowRight,
   ChevronDown
 } from 'lucide-react';
@@ -153,6 +155,41 @@ export default function RegisterPage() {
                     />
                   </div>
                 </div>
+                {/*Age*/}
+                <div>
+                  <label className="block text-xs font-bold text-gray-700 mb-1.5">Age (Years)</label>
+                  <div className="relative">
+                    <FileText className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <input
+                      type="number"
+                      min="1"
+                      placeholder="e.g. 19"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
+                    />
+                  </div>
+                </div>
+                {/* Blood Group Dropdown */}
+                <div>
+                  <label className="block text-xs font-bold text-gray-700 mb-1.5">Required Blood Group</label>
+                  <div className="relative">
+                    <Droplet className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <select
+                      defaultValue=""
+                      className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-xl text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors text-gray-700"
+                    >
+                      <option value="" disabled hidden>Select blood group</option>
+                      <option value="A+">A+</option>
+                      <option value="A-">A-</option>
+                      <option value="B+">B+</option>
+                      <option value="B-">B-</option>
+                      <option value="AB+">AB+</option>
+                      <option value="AB-">AB-</option>
+                      <option value="O+">O+</option>
+                      <option value="O-">O-</option>
+                    </select>
+                    <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
+                  </div>
+                </div>
 
                 {/* Date of Birth */}
                 <div>
@@ -187,6 +224,7 @@ export default function RegisterPage() {
                   <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
                 </div>
               </div>
+
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Password */}

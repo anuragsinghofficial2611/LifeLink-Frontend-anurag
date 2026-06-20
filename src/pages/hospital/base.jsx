@@ -21,11 +21,12 @@ import {
 import Dashboard from './pages/dashboard.jsx'
 import ActiveRequest from './pages/activerequests.jsx'
 import { HashLink } from 'react-router-hash-link'
-import BloodRequests from './pages/bloodrequest.jsx';
+import BloodRequest from './pages/bloodrequest.jsx';
 import BloodStock from './pages/bloodstock.jsx';
 import Donorverification from './pages/donorverification.jsx';
 import HelpandSupport from "./pages/helpsupport.jsx";
 import Notification from "./pages/notification.jsx";
+
 
 const HospitalSidebar = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -80,8 +81,8 @@ const HospitalSidebar = () => {
         <div className="flex h-screen">
 
             <aside
-                className={`h-screen bg-white md:min-w-60 border-r max-w-200 flex-row border-gray-200 flex md:flex-col transition-all duration-300 ${collapsed ? "w-20" : "w-72",
-                    (!"md") ? setCollapsed(true) : ""
+                className={`h-screen bg-white  border-r  flex-row border-gray-200 flex md:flex-col transition-all duration-300 ${collapsed ? "w-20" : "w-65"
+                    
 
                     }`}
             >
@@ -188,6 +189,7 @@ const HospitalSidebar = () => {
             <div className = "h-screen overflow-hidden">
 
                 <Dashboard />
+                <BloodRequest />
                 <ActiveRequest />
             </div>
 

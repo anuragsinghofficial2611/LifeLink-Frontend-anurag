@@ -14,9 +14,57 @@ import Navbar from '../../components/layout/navbar.jsx'
 import { useState } from 'react'
 
 export default function LoginPage() {
+
+
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const loginuser = async () => {
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/v1/login/`,
+
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password
+          }),
+        }
+      );
+
+      const data = await response.json();
+      console.log(data)
+
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong");
+      }
+
+      return data;
+    } catch (error) {
+      console.error("Error:", error.message);
+      throw error;
+    }
+  };
+
+
+
+
+
+
+
+
+
+
   const [showPassword, setShowPassword] = useState(false)
   function handleSubmit(e) {
-    console.log("login from submitted")
+    e.preventDefault();
+    loginuser();
   }
   return (
     <>
@@ -142,6 +190,7 @@ export default function LoginPage() {
                     <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <input
                       type="email"
+                      onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email address"
                       className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
                     />
@@ -153,6 +202,7 @@ export default function LoginPage() {
                     <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <input
                       type={showPassword ? "text" : "password"}
+                      onChange={(e) => { setPassword(e.target.value) }}
                       placeholder="Create a strong password"
                       className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
                     />

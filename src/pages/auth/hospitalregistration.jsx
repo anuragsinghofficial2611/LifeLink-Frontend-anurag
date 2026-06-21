@@ -14,13 +14,46 @@ import {
   Eye,
   ArrowRight,
 } from "lucide-react";
+import Navbar from '../../components/layout/navbar.jsx'
+import { useState } from 'react'
 
 const HospitalRegister = () => {
+
+
+
+
+  const [name, setName] = useState("");
+  const [type, setType] = useState("");
+  const [phone, setPhone] = useState("");
+  const [alternative_phone1 , setAlternative_phone1] = useState("");
+  const [alternative_phone2 , setAlternative_phone2] = useState("");
+  const [email , setEmail] = useState("");
+  const [site , setSite] = useState("");
+  const [city, setCity] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [state,setState] = useState("");
+  const [address , setAddress] = useState("");
+  const [district, setDistrict] = useState("");
+  const [longitude , setLongitude] = useState(0);
+  const [latitude , setLatitude] = useState(0);
+  const [geohash_64_bits , setGeohash_64_bits] = useState("");
+  const [password , setPassword] = useState("");
+
+
+
+
+  function handleSubmit(e) {
+
+    e.preventDefault();
+  }
+
+
   return (
-    <div className="min-h-screen bg-gray-50 p-6 shadow-sm">
+    <div className="min-h-screen bg-gray-50 p-6 pt-0 shadow-sm">
+      <Navbar />
       <div className="max-w-7xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
         <div className="grid lg:grid-cols-2">
-          
+
           {/* LEFT SECTION */}
           <div className="p-12 border-r">
             <div className="flex items-center gap-2 mb-12">
@@ -143,26 +176,29 @@ const HospitalRegister = () => {
               Create your hospital account to get started ❤️
             </p>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-5">
                 <Input icon={<Building2 size={18} />} placeholder="Hospital Name" />
                 <Input icon={<Landmark size={18} />} placeholder="Hospital Type" />
               </div>
 
               <div className="grid md:grid-cols-2 gap-5">
-                <Input icon={<User size={18} />} placeholder="Full Name" />
-                <Input icon={<Mail size={18} />} placeholder="Official Email" />
+                <Input icon={<Mail size={18} />} placeholder="Official Email Address" />
+                <Input icon={<Phone size={18} />} placeholder="Phone Number" />
               </div>
 
               <div className="grid md:grid-cols-2 gap-5">
-                <Input icon={<Phone size={18} />} placeholder="Phone Number" />
-                <Input icon={<Building2 size={18} />} placeholder="Registration Number" />
+                <Input icon={<Phone size={18} />} placeholder="Alternative Phone Number1" />
+                <Input icon={<Phone size={18} />} placeholder="Alternative Phone Number2" />
               </div>
+              <div className="grid md:grid-cols-2 gap-5">
 
-              <Input
-                icon={<MapPin size={18} />}
-                placeholder="Hospital Address"
-              />
+                <Input
+                  icon={<MapPin size={18} />}
+                  placeholder="Hospital Address"
+                />
+                <Input placeholder="District" />
+              </div>
 
               <div className="grid md:grid-cols-3 gap-5">
                 <Input placeholder="City" />
@@ -181,11 +217,11 @@ const HospitalRegister = () => {
                   <h4 className="font-semibold">
                     Your data is secure with us.
                   </h4>
-                  
+
                 </div>
               </div>
 
-              <button className="w-full bg-red-600 hover:cursor-pointer hover:bg-red-700 text-white py-4 rounded-xl flex justify-center items-center gap-2 font-semibold">
+              <button type="Submit" className="w-full bg-red-600 hover:cursor-pointer hover:bg-red-700 text-white py-4 rounded-xl flex justify-center items-center gap-2 font-semibold">
                 Register Hospital
                 <ArrowRight size={18} />
               </button>

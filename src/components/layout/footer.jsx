@@ -40,7 +40,7 @@ const Footer = () => {
 
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid lg:grid-cols-5 md:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-6 md:grid-cols-2 gap-12">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-5">
@@ -178,6 +178,15 @@ const Footer = () => {
               
             </div>
           </div>
+          <div>
+            <h1 className = "font-semibold text-lg mb-5">Pages</h1>
+            <div className = "space-y-2 text-gray-600 flex flex-col">
+              <a href="/profile">Profile</a>
+              <a href = "/hospital">Hospital</a>
+              <a href = "/admin">Admin</a>
+              
+            </div>
+          </div>
         </div>
       </div>
 
@@ -185,7 +194,7 @@ const Footer = () => {
       <div className="border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">
-            {/* © 2026 LifeLink. All rights reserved. */}
+            © 2026 LifeLink. All rights reserved.
           </p>
 
           

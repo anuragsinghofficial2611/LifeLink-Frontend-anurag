@@ -19,8 +19,66 @@ import {
 import Navbar from '../../components/layout/navbar.jsx'
 
 export default function RegisterPage() {
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [age, setAge] = useState(0);
+  const [blood_group, setBlood_group] = useState("");
+  const [sex, setSex] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const registerUser = async () => {
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/v1/register/`,
+
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            phone,
+            blood_group,
+            age,
+            sex,
+            password
+          }),
+        }
+      );
+
+      const data = await response.json();
+      console.log(data)
+
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong");
+      }
+
+      return data;
+    } catch (error) {
+      console.error("Error:", error.message);
+      throw error;
+    }
+  };
+  
+
+  function handleSubmit(e){
+    e.preventDefault();
+    registerUser();
+  }
+
+
+
+  // console.log(bloodgroup)
+  // console.log(name);
+  // console.log(sex)
+  // console.log(age);
 
   return (
     <>
@@ -115,7 +173,7 @@ export default function RegisterPage() {
             </div>
 
             {/* Form right side me */}
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit = {handleSubmit} className="space-y-4">
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
@@ -125,6 +183,7 @@ export default function RegisterPage() {
                     <input
                       type="text"
                       placeholder="Enter your full name"
+                      onChange={(e) => { setName(e.target.value) }}
                       className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
                     />
                   </div>
@@ -137,6 +196,7 @@ export default function RegisterPage() {
                     <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <input
                       type="email"
+                      onChange={(e) => { setEmail(e.target.value) }}
                       placeholder="Enter your email address"
                       className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
                     />
@@ -149,7 +209,8 @@ export default function RegisterPage() {
                   <div className="relative">
                     <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <input
-                      type="tel"
+                      type="string"
+                      onChange={(e) => { setPhone(e.target.value) }}
                       placeholder="Enter your phone number"
                       className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
                     />
@@ -163,6 +224,7 @@ export default function RegisterPage() {
                     <input
                       type="number"
                       min="1"
+                      onChange={(e) => { setAge(e.target.value) }}
                       placeholder="e.g. 19"
                       className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
                     />
@@ -175,6 +237,7 @@ export default function RegisterPage() {
                     <Droplet className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <select
                       defaultValue=""
+                      onChange={(e) => { setBlood_group(e.target.value) }}
                       className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-xl text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors text-gray-700"
                     >
                       <option value="" disabled hidden>Select blood group</option>
@@ -190,40 +253,27 @@ export default function RegisterPage() {
                     <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
                   </div>
                 </div>
-
-                {/* Date of Birth */}
-                <div>
-                  <label className="block text-xs font-bold text-gray-700 mb-1.5">Date of Birth</label>
+                {/* Gender */}
+                <div className="w-full sm:pr-2">
+                  <label className="block text-xs font-bold text-gray-700 mb-1.5">Gender</label>
                   <div className="relative">
-                    <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
-                    <input
-                      type="text"
-                      placeholder="Select your date of birth"
-                      className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
-                      onFocus={(e) => e.target.type = 'date'}
-                      onBlur={(e) => { if (!e.target.value) e.target.type = 'text' }}
-                    />
+                    <User className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <select
+                      defaultValue=""
+                      onChange={(e) => { setSex(e.target.value) }}
+                      className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-xl text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors text-gray-700"
+                    >
+                      <option value="" disabled hidden>Select your gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
                   </div>
                 </div>
               </div>
 
-              {/* Gender */}
-              <div className="w-full sm:w-1/2 sm:pr-2">
-                <label className="block text-xs font-bold text-gray-700 mb-1.5">Gender</label>
-                <div className="relative">
-                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
-                  <select
-                    defaultValue=""
-                    className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-xl text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors text-gray-700"
-                  >
-                    <option value="" disabled hidden>Select your gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                  </select>
-                  <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
-                </div>
-              </div>
+
 
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -234,6 +284,7 @@ export default function RegisterPage() {
                     <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <input
                       type={showPassword ? "text" : "password"}
+                      onChange={(e) => { setPassword(e.target.value) }}
                       placeholder="Create a strong password"
                       className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
                     />

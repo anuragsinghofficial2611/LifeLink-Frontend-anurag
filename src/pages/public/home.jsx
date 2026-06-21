@@ -97,9 +97,8 @@ const home = () => {
             <Howitworks />
             {/* <Donateblood /> */}
             <Requestblood />
-            <BloodRequests />
+            {/* <BloodRequests /> */}
 
-            <a href="/profile" className="border-1 px-5 py-2">ProfileSection</a>
             <Footer />
 
         </>

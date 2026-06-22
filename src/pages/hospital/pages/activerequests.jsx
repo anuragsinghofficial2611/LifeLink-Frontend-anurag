@@ -1,4 +1,4 @@
-import React from "react";
+import { React,useState,useEffect } from "react";
 import {
   Search,
   AlertTriangle,
@@ -9,44 +9,46 @@ import {
 } from "lucide-react";
 
 export default function BloodRequestsPage() {
-  const requests = [
-    {
-      id: "#BL-1001",
-      patient: "Rahul Sharma",
-      bloodGroup: "O-",
-      units: 3,
-      hospitalWing: "ICU",
-      status: "Emergency",
-      time: "10 mins ago",
-    },
-    {
-      id: "#BL-1002",
-      patient: "Priya Singh",
-      bloodGroup: "A+",
-      units: 2,
-      hospitalWing: "Surgery",
-      status: "Active",
-      time: "25 mins ago",
-    },
-    {
-      id: "#BL-1003",
-      patient: "Amit Patel",
-      bloodGroup: "B+",
-      units: 4,
-      hospitalWing: "Trauma",
-      status: "Matched",
-      time: "1 hour ago",
-    },
-    {
-      id: "#BL-1004",
-      patient: "Neha Verma",
-      bloodGroup: "AB-",
-      units: 1,
-      hospitalWing: "Emergency",
-      status: "Active",
-      time: "2 hours ago",
-    },
-  ];
+  const [requests, setRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchActiveRequests = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/v1/blood-requests/`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch requests");
+        }
+
+        const data = await response.json();
+
+        // if backend is sending array formate directly 
+        setRequests(data);
+        console.log(data);
+        
+
+
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchActiveRequests();
+  }, []);
+
+
+
 
   const getStatusStyle = (status) => {
     switch (status) {
@@ -154,19 +156,25 @@ export default function BloodRequestsPage() {
                   <div>
                     <p className="text-slate-500">Blood Group</p>
                     <p className="font-semibold text-red-600">
-                      {request.bloodGroup}
+                      {request.blood_group}
                     </p>
                   </div>
 
                   <div>
                     <p className="text-slate-500">Units Required</p>
-                    <p className="font-semibold">{request.units}</p>
+                    <p className="font-semibold">{request.quantity}</p>
                   </div>
 
                   <div>
-                    <p className="text-slate-500">Department</p>
+                    <p className="text-slate-500">Name</p>
                     <p className="font-semibold">
-                      {request.hospitalWing}
+                      {request.patient_name}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-slate-500">Phone Number</p>
+                    <p className="font-semibold">
+                      {request.phone}
                     </p>
                   </div>
                 </div>

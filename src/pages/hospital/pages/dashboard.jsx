@@ -11,26 +11,47 @@ import {
 } from "lucide-react";
 import{ HashLink }from 'react-router-hash-link'
 
+import { useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
+
+
 export default function HospitalDashboard() {
+  const navigate = useNavigate();
+  //comment this to aviod unnecessary navigation to login 
+  useEffect(() => {
+    if(!user) navigate('/hospitallogin')
+  },[])
+  const user = useSelector((state) => state.auth.user)
+  
+  console.log(user)
+
+  const hospitalname = user?.name || "not found";
+  const totalrequests = user?.totalrequests || "0";
+  const activerequests = user?.activerequests || "0"
+  const fullfilledrequests = user?.totaldonation || "0"
+  const nearbydonors = user?.totaldonation || "0"
+
+
   const stats = [
     {
       title: "Total Requests",
-      value: "248",
+      value: totalrequests,
       icon: Droplets,
     },
     {
       title: "Active Requests",
-      value: "32",
+      value: activerequests,
       icon: Activity,
     },
     {
       title: "Fulfilled Requests",
-      value: "196",
+      value: fullfilledrequests,
       icon: CheckCircle,
     },
     {
       title: "Nearby Donors",
-      value: "1,542",
+      value: nearbydonors,
       icon: Users,
     },
   ];
@@ -75,7 +96,7 @@ export default function HospitalDashboard() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-slate-800">
-            Hospital Name
+            {hospitalname}
           </h1>
           <p className="text-slate-500 mt-1">
             Manage blood requests and donor network
@@ -178,17 +199,17 @@ export default function HospitalDashboard() {
             <ul className="space-y-3 text-sm">
               <li className="flex justify-between">
                 <span>Verification Requests</span>
-                <span className="font-semibold">12</span>
+                <span className="font-semibold">0</span>
               </li>
 
               <li className="flex justify-between">
                 <span>Emergency Cases</span>
-                <span className="font-semibold">4</span>
+                <span className="font-semibold">0</span>
               </li>
 
               <li className="flex justify-between">
                 <span>Follow Ups</span>
-                <span className="font-semibold">9</span>
+                <span className="font-semibold">0</span>
               </li>
             </ul>
           </div>

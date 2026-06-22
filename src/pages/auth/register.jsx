@@ -17,6 +17,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 import Navbar from '../../components/layout/navbar.jsx'
+import { useNavigate } from 'react-router-dom'
 
 export default function RegisterPage() {
 
@@ -30,8 +31,10 @@ export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const registerUser = async () => {
+  const navigate = useNavigate();
 
+  const registerUser = async () => {
+    
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/v1/register/`,
@@ -58,6 +61,9 @@ export default function RegisterPage() {
 
       if (!response.ok) {
         throw new Error(data.message || "Something went wrong");
+      }
+      else {
+        navigate('/login')
       }
 
       return data;

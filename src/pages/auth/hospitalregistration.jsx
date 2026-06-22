@@ -15,6 +15,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Navbar from '../../components/layout/navbar.jsx'
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
 const HospitalRegister = () => {
@@ -25,26 +26,73 @@ const HospitalRegister = () => {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [phone, setPhone] = useState("");
-  const [alternative_phone1 , setAlternative_phone1] = useState("");
-  const [alternative_phone2 , setAlternative_phone2] = useState("");
-  const [email , setEmail] = useState("");
-  const [site , setSite] = useState("");
+  const [alternative_phone1, setAlternative_phone1] = useState("");
+  const [alternative_phone2, setAlternative_phone2] = useState("");
+  const [email, setEmail] = useState("");
+  const [site, setSite] = useState("https://www.fortishealthcare.com/");
   const [city, setCity] = useState("");
   const [zipcode, setZipcode] = useState("");
-  const [state,setState] = useState("");
-  const [address , setAddress] = useState("");
+  const [state, setState] = useState("");
+  const [address, setAddress] = useState("");
   const [district, setDistrict] = useState("");
-  const [longitude , setLongitude] = useState(0);
-  const [latitude , setLatitude] = useState(0);
-  const [geohash_64_bits , setGeohash_64_bits] = useState("");
-  const [password , setPassword] = useState("");
+  const [longitude, setLongitude] = useState(0);
+  const [latitude, setLatitude] = useState(0);
+  const [geohash_64_bits, setGeohash_64_bits] = useState("");
+  const [password, setPassword] = useState("");
 
+
+  const registerUser = async () => {
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/v1/hospitals/`,
+
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            type,
+            phone,
+            alternative_phone1,
+            alternative_phone2,
+            email,
+            site,
+            city,
+            zipcode,
+            state,
+            address,
+            district,
+            longitude,
+            latitude,
+            geohash_64_bits,
+            password
+          }),
+        }
+      );
+
+      const data = await response.json();
+      console.log(data)
+
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong");
+      }
+
+      return data;
+    } catch (error) {
+      console.error("Error:", error.message);
+      throw error;
+    }
+  };
 
 
 
   function handleSubmit(e) {
 
     e.preventDefault();
+    registerUser();
   }
 
 
@@ -162,9 +210,9 @@ const HospitalRegister = () => {
                 <span className="text-gray-600">
                   Already registered?
                 </span>
-                <button className="border border-red-600 text-red-600 px-5 py-2 rounded-lg">
+                <Link to="/hospitallogin" className="border border-red-600 text-red-600 px-5 py-2 rounded-lg">
                   Login
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -178,18 +226,66 @@ const HospitalRegister = () => {
 
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-5">
-                <Input icon={<Building2 size={18} />} placeholder="Hospital Name" />
-                <Input icon={<Landmark size={18} />} placeholder="Hospital Type" />
+                <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
+                  <Building2 size={18} />
+                  <input
+                    type="text"
+                    placeholder="Hospital Name"
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full outline-none"
+                  />
+                </div>
+                <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
+                  <Landmark size={18} />
+                  <input
+                    type="text"
+                    placeholder="type Private or Government"
+                    onChange={(e) => setType(e.target.value)}
+                    className="w-full outline-none"
+                  />
+                </div>
               </div>
 
               <div className="grid md:grid-cols-2 gap-5">
-                <Input icon={<Mail size={18} />} placeholder="Official Email Address" />
-                <Input icon={<Phone size={18} />} placeholder="Phone Number" />
+                <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
+                  <Mail size={18} />
+                  <input
+                    type="text"
+                    placeholder="Official Email Address"
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full outline-none"
+                  />
+                </div>
+                <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
+                  <Phone size={18} />
+                  <input
+                    type="text"
+                    placeholder="Phone Number"
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full outline-none"
+                  />
+                </div>
               </div>
 
               <div className="grid md:grid-cols-2 gap-5">
-                <Input icon={<Phone size={18} />} placeholder="Alternative Phone Number1" />
-                <Input icon={<Phone size={18} />} placeholder="Alternative Phone Number2" />
+                <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
+                  <Phone size={18} />
+                  <input
+                    type="text"
+                    placeholder="Alternative Phone Number 1"
+                    onChange={(e) => setAlternative_phone1(e.target.value)}
+                    className="w-full outline-none"
+                  />
+                </div>
+                <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
+                  <Phone size={18} />
+                  <input
+                    type="text"
+                    placeholder="Alternative Phone Number 2"
+                    onChange={(e) => setAlternative_phone2(e.target.value)}
+                    className="w-full outline-none"
+                  />
+                </div>
               </div>
               <div className="grid md:grid-cols-2 gap-5">
 
@@ -197,18 +293,66 @@ const HospitalRegister = () => {
                   icon={<MapPin size={18} />}
                   placeholder="Hospital Address"
                 />
-                <Input placeholder="District" />
+                <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
+
+                  <input
+                    type="text"
+                    placeholder="district"
+                    className="w-full outline-none"
+                    onChange={(e) => setDistrict(e.target.value)}
+                  />
+                </div>
               </div>
 
               <div className="grid md:grid-cols-3 gap-5">
-                <Input placeholder="City" />
-                <Input placeholder="State" />
-                <Input placeholder="PIN Code" />
+                <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
+                  {/* {icon size={18}} */}
+                  <input
+                    type="text"
+                    placeholder="city"
+                    className="w-full outline-none"
+                    onChange={(e) => { setCity(e.target.value) }}
+                  />
+                </div>
+                <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
+                  {/* {icon} */}
+                  <input
+                    type="text"
+                    placeholder="state"
+                    className="w-full outline-none"
+                    onChange={(e) => setState(e.target.value)}
+                  />
+                </div>
+                <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
+                  {/* {MapPin} */}
+                  <input
+                    type="text"
+                    placeholder="pin code"
+                    className="w-full outline-none"
+                  />
+                </div>
               </div>
 
               <div className="grid md:grid-cols-2 gap-5">
-                <PasswordInput placeholder="Create Password" />
-                <PasswordInput placeholder="Confirm Password" />
+                <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
+                  <Lock size={18} />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    className="w-full outline-none"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <Eye size={18} />
+                </div>
+                <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
+                  <Lock size={18} />
+                  <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    className="w-full outline-none"
+                  />
+                  <Eye size={18} />
+                </div>
               </div>
 
               <div className="bg-red-50 border border-red-100 rounded-xl p-4 flex gap-3">

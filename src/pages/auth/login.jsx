@@ -12,15 +12,23 @@ import {
 } from "lucide-react";
 import Navbar from '../../components/layout/navbar.jsx'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { loginSuccess } from "../../redux/slices/authSlice.js";
+import { useNavigate } from "react-router-dom"
 
 export default function LoginPage() {
+
+  const dispatch = useDispatch();
 
 
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [logging, setLoggin] = useState(false);
 
   const loginuser = async () => {
+
+    
 
     try {
       const response = await fetch(
@@ -44,6 +52,24 @@ export default function LoginPage() {
       if (!response.ok) {
         throw new Error(data.message || "Something went wrong");
       }
+      else {
+        localStorage.setItem("token",data.access_token);
+        navigate("/profile")
+      }
+
+
+      try{
+
+        dispatch(
+          loginSuccess({
+            user: data.user,
+            token: data.access_token,
+            role: "user",
+          })
+        );
+      } catch(error){
+        console.log("error occured in redux from dipatch function ",error);
+      }
 
       return data;
     } catch (error) {
@@ -57,7 +83,7 @@ export default function LoginPage() {
 
 
 
-
+  const navigate = useNavigate();
 
 
 
@@ -208,7 +234,11 @@ export default function LoginPage() {
                     />
                     <button
                       type="button"
-                      onClick={() => setShowPassword(!showPassword)}
+                      onClick={() => {
+                        setShowPassword(!showPassword)
+                        setLoggin(true);
+                      }}
+                      
                       className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                     >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -217,7 +247,10 @@ export default function LoginPage() {
                 </div>
                 <div className="flex justify-center mt-3 ">
 
-                  <button type="Submit" className="text-center bg-gray-200 px-5 py-2 rounded-xl hover:bg-gray-300 hover:w-25 hover:cursor-pointer">Submit</button>
+                  <button type="Submit"
+                  className="text-center bg-gray-200 px-5 py-2 rounded-xl hover:bg-gray-300 hover:w-25 hover:cursor-pointer"
+                   
+                    >Submit</button>
                 </div>
                 <div className="relative flex py-2 items-center">
                   <div className="flex-grow border-t border-gray-100"></div>

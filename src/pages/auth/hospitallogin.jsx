@@ -13,10 +13,81 @@ import {
 import Navbar from '../../components/layout/navbar.jsx'
 import { useState } from 'react'
 
+import { useDispatch } from 'react-redux'
+import { loginSuccess } from "../../redux/slices/authSlice.js";
+import { useNavigate } from "react-router-dom"
+
 export default function HospitalLogin() {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false)
+
+  const [email , setEmail] = useState("");
+  const [password , setPassword] = useState("");
+
+    const loginuser = async () => {
+  
+      
+  
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/v1/login/`,
+  
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email,
+              password
+            }),
+          }
+        );
+  
+        const data = await response.json();
+        console.log(data)
+  
+        if (!response.ok) {
+          throw new Error(data.message || "Something went wrong");
+        }
+        else {
+          localStorage.setItem("token",data.access_token);
+          localStorage.setItem("id",data.user.user_id)
+          navigate("/hospital")
+        }
+  
+  
+        try{
+  
+          dispatch(
+            loginSuccess({
+              user: data.user,
+              token: data.access_token,
+              role: "hospital",
+            })
+          );
+        } catch(error){
+          console.log("error occured in redux from dipatch function ",error);
+        }
+  
+        return data;
+      } catch (error) {
+        console.error("Error:", error.message);
+        throw error;
+      }
+    };
+  
+  
+
+
   function handleSubmit(e) {
+    e.preventDefault();
+    loginuser();
+    alert("request sent")
     console.log("login from submitted")
+
   }
   return (
     <>
@@ -143,6 +214,7 @@ export default function HospitalLogin() {
                     <input
                       type="email"
                       placeholder="Enter your email address"
+                      onChange={(e) => {setEmail(e.target.value)}}
                       className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
                     />
                   </div>
@@ -154,6 +226,7 @@ export default function HospitalLogin() {
                     <input
                       type={showPassword ? "text" : "password"}
                       placeholder="Create a strong password"
+                      onChange={(e) => {setPassword(e.target.value)}}
                       className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors placeholder:text-gray-400"
                     />
                     <button

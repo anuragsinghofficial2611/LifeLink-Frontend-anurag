@@ -124,7 +124,7 @@ const HospitalSidebar = () => {
         <div className="flex h-screen">
 
             <aside
-                className={`h-screen bg-white  border-r  flex-row border-gray-200 flex md:flex-col transition-all duration-300 ${collapsed ? "w-20" : "w-65"
+                className={`h-screen bg-white hidden md:flex  border-r  flex-row border-gray-200 flex md:flex-col transition-all duration-300 ${collapsed ? "w-20" : "w-65"
 
 
                     }`}

@@ -42,8 +42,8 @@ const home = () => {
                                 </p>
                             </div>
                             <div className="md:ml-12 m-5 flex gap-10">
-                                <HashLink smooth to = "/login" className="bg-red-600 transition-all px-4 duration-200 text-white md:px-12 hover:bg-white hover:text-black hover:border-1 font-semibold rounded-xl  md:py-4 "> DonateBlood </HashLink>
-                                <HashLink smooth to="/login" className="md:px-10 md:py-4 transition-all px-4 duration-200  rounded-xl hover:bg-gray-100 hover:border-1 font-semibold bg-gray-200 ">RequestBlood</HashLink>
+                                <HashLink smooth to = "/hospitalregistration" className="bg-red-600 transition-all px-4 duration-200 text-white md:px-12 hover:bg-white hover:text-black hover:border-1 font-semibold rounded-xl  md:py-4 "> Register Hospital </HashLink>
+                                <HashLink smooth to="/hospitallogin" className="md:px-10 md:py-4 transition-all px-4 duration-200  rounded-xl hover:bg-gray-100 hover:border-1 font-semibold bg-gray-200 "> Hospital Login </HashLink>
                             </div>
                             <div className='hidden md:flex md:ml-12 mt-7 '>
                                 <UsersRound /><UsersRound /><UsersRound /><p>100+users</p>

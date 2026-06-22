@@ -14,7 +14,7 @@ import Navbar from '../../components/layout/navbar.jsx'
 import { useState } from 'react'
 
 import { useDispatch } from 'react-redux'
-import { loginSuccess } from "../../redux/slices/authSlice.js";
+import { loginSuccess } from "../../redux/slices/authslice.js";
 import { useNavigate } from "react-router-dom"
 
 export default function HospitalLogin() {

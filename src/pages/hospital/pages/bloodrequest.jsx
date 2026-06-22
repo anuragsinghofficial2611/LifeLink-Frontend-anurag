@@ -80,7 +80,7 @@ export default function requestblood() {
 
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 md:p-8 font-sans" id='requestblood'>
+    <div className="min-h-screen bg-gray-50 overflow-scroll flex items-center justify-center p-4 md:p-8 font-sans" id='requestblood'>
       <div className="max-w-6xl w-full bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden flex flex-col md:flex-row">
 
         {/* LEFT SIDE: Information & Instructions */}

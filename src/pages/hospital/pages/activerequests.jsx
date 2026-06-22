@@ -62,7 +62,7 @@ export default function BloodRequestsPage() {
   };
 
   return (
-    <div id="activerequest" className="min-h-screen bg-slate-50 p-6">
+    <div id="activerequest" className="min-h-screen overflow-scroll bg-slate-50 p-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between gap-4 mb-8">
         <div>

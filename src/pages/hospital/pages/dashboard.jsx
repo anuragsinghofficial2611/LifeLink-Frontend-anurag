@@ -49,9 +49,10 @@ export default function HospitalDashboard() {
   }
 
 
+  const user = useSelector((state) => state.auth.user)
 
   useEffect(() => {
-    // if(!user) navigate('/hospitallogin')
+    if(!user) navigate('/hospitallogin')
 
 
     getdata();
@@ -59,7 +60,6 @@ export default function HospitalDashboard() {
 
 
   }, [])
-  const user = useSelector((state) => state.auth.user)
 
 
   console.log(user)
